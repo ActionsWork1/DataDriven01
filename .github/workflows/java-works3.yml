@@ -103,7 +103,7 @@ jobs:
       # ⬇️ Generate Allure HTML report
       - name: Generate Allure Report
         if: always()
-        uses: simple-elf/allure-report-action@v1.9
+        uses: simple-elf/allure-report-action@master
         with:
           allure_results: allure-results
           allure_report: allure-report
