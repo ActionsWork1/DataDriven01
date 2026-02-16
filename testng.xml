@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="Data-Driven Test">
+    <classes>
+        <class name="auto.play01.datadriven01.TestDDT01"/>
+        <class name="auto.play01.datadriven01.TestDataFaker"/>
+        <class name ="auto.play01.datadriven01.CRUDJsonTest"/>
+        <class name ="auto.play01.datadriven01.TestExample"/>
+    </classes>
+</test>
+</suite>
