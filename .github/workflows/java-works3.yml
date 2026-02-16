@@ -63,18 +63,32 @@ jobs:
           name: allure-results
           path: allure-results
 
-      # Pull history from gh-pages branch if it exists
-      - name: Checkout gh-pages branch
+#      # Pull history from gh-pages branch if it exists
+#      - name: Checkout gh-pages branch
+#        run: |
+#          git fetch origin gh-pages || echo "No gh-pages branch yet"
+#          if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+#            git checkout gh-pages
+#            mkdir -p ../history
+#            cp -r history ../history || true
+#            git checkout -
+#            mkdir -p allure-results/history
+#            cp -r ../history allure-results/ || true
+#          fi
+
+      # Fetch previous gh-pages history
+      - name: Fetch gh-pages history
         run: |
-          git fetch origin gh-pages || echo "No gh-pages branch yet"
-          if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
+            git fetch origin gh-pages || echo "No gh-pages branch yet"
+            if git show-ref --verify --quiet refs/remotes/origin/gh-pages; then
             git checkout gh-pages
-            mkdir -p ../history
-            cp -r history ../history || true
+            mkdir -p ../old-history
+            cp -r history ../old-history || true
             git checkout -
-            mkdir -p allure-results/history
-            cp -r ../history allure-results/ || true
-          fi
+            mkdir -p allure-report/history
+            cp -r ../old-history/* allure-report/history/ || true
+            fi
+
 
       - name: Install Allure CLI
         run: npm install -g allure-commandline
