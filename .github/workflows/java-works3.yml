@@ -6,6 +6,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
+
 jobs:
   test:
     name: Test & Cache (${{ matrix.os }})
@@ -42,6 +46,10 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install chromium --with-deps"
 
+      - name: Set Allure results directory
+        shell: pwsh
+        run: |
+            echo "ALLURE_RESULTS_DIRECTORY=$env:GITHUB_WORKSPACE\allure-results" >> $env:GITHUB_ENV
 
       - name: Run Tests
         run: mvn clean test
@@ -53,7 +61,7 @@ jobs:
         with:
           name: allure-results-${{ matrix.os }}
           path: allure-results
-          retention-days: 7
+          retention-days: 20
 
   publish:
     name: Generate & Publish Allure Report
@@ -71,17 +79,17 @@ jobs:
           name: allure-results-ubuntu-latest
           path: allure-results
 
-      - name: Download Allure Results (Windows)
-        uses: actions/download-artifact@v4
-        with:
-          name: allure-results-windows-latest
-          path: allure-results
-
-      - name: Download Allure Results (macOS)
-        uses: actions/download-artifact@v4
-        with:
-          name: allure-results-macos-latest
-          path: allure-results
+#      - name: Download Allure Results (Windows)
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: allure-results-windows-latest
+#          path: allure-results
+#
+#      - name: Download Allure Results (macOS)
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: allure-results-macos-latest
+#          path: allure-results
 
       # ⬇️ Pull previous Allure history from gh-pages
       - name: Load Allure History
