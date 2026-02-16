@@ -13,7 +13,7 @@ jobs:
       matrix:
         # Runs on Ubuntu, Windows, and macOS simultaneously
         # os: [ubuntu-latest, windows-latest, macos-latest]
-        os: ubuntu-latest
+        os: [ubuntu-latest]
 
     runs-on: ${{ matrix.os }}
 
