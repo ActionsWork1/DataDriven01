@@ -43,10 +43,6 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install chromium --with-deps"
 
-      - name: Set Allure results directory
-        # shell: pwsh
-        run: |
-            echo "ALLURE_RESULTS_DIRECTORY=$env:GITHUB_WORKSPACE\allure-results" >> $env:GITHUB_ENV
 
       - name: Run Tests
         run: mvn clean test
