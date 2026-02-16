@@ -36,11 +36,12 @@ jobs:
             ${{ runner.os }}-playwright-
 
       - name: Install Playwright Browsers
-        run: mvn -q -DskipTests=true exec:java -e
-        continue-on-error: true
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install chromium --with-deps"
 
       - name: Run Tests
-        run: mvn clean test
+        run: mvn test
+        continue-on-error: true
 
       - name: Load Allure History
         if: always()
