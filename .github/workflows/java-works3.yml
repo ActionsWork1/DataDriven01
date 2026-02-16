@@ -47,7 +47,7 @@ jobs:
       - name: Run Tests
         run: mvn clean test
 
-      # ⬆️ Upload raw Allure results for the publish job
+
       - name: Upload Allure Results
         if: always()
         uses: actions/upload-artifact@v4
@@ -65,7 +65,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # ⬇️ Download all Allure results from matrix jobs
+
       - name: Download Allure Results (Linux)
         uses: actions/download-artifact@v4
         with:
@@ -89,7 +89,7 @@ jobs:
 #          name: allure-results-macos-latest
 #          path: allure-results
 
-      # ⬇️ Pull previous Allure history from gh-pages
+
       - name: Load Allure History
         if: always()
         uses: actions/checkout@v4
@@ -106,7 +106,7 @@ jobs:
             cp -r gh-pages/history/* allure-results/history/ || true
           fi
 
-      # ⬇️ Generate Allure HTML report
+
       - name: Generate Allure Report
         if: always()
         uses: simple-elf/allure-report-action@master
@@ -117,12 +117,12 @@ jobs:
           keep_reports: 20
 
       - name: Locate Allure results anywhere
-        shell: pwsh
+#        shell: pwsh
         run: |
             Get-ChildItem . -Recurse -Directory -Filter allure-results      
           
 
-      # ⬇️ Publish to GitHub Pages
+
       - name: Publish Allure Report
         if: always()
         uses: peaceiris/actions-gh-pages@v4
