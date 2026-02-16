@@ -116,13 +116,6 @@ jobs:
           gh_pages: gh-pages
           keep_reports: 20
 
-      - name: Locate Allure results anywhere
-#        shell: pwsh
-        run: |
-            Get-ChildItem . -Recurse -Directory -Filter allure-results      
-          
-
-
       - name: Publish Allure Report
         if: always()
         uses: peaceiris/actions-gh-pages@v4
