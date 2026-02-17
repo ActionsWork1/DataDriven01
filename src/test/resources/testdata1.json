@@ -8,14 +8,6 @@
     "Name" : "Test4",
     "Password" : "888"
   }, {
-    "Email" : "updated_test2@example.com",
-    "Name" : "Test1",
-    "Password" : "999"
-  }, {
-    "Email" : "updated_test2@example.com",
-    "Name" : "Test100",
-    "Password" : "999"
-  }, {
     "Email" : "new_user@example.com",
     "Name" : "Test200",
     "Password" : "888"
