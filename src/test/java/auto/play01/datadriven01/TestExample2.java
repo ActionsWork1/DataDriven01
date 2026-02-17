@@ -1,10 +1,13 @@
 package auto.play01.datadriven01;
 
 import auto.play01.base.BaseUiTest;
+import io.qameta.allure.Allure;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+
+
 
 public class TestExample2 extends BaseUiTest {
 
