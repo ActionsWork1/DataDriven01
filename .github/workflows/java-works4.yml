@@ -46,7 +46,7 @@ jobs:
         #run: npx playwright install --with-deps
 
       - name: Build and Test
-        run: mvn clean test
+        run: xvfb-run --auto-servernum mvn clean test
 
       # 1. Pull existing history from gh-pages into a local folder named 'gh-pages'
       - name: Load Allure History
