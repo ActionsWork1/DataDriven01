@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="Data-Driven Test">
-    <classes>
+    <test name="Data-Driven Test" verbose="2" preserve-order="true" >
+      <classes>
         <class name="auto.play01.datadriven01.TestDDT01"/>
         <class name="auto.play01.datadriven01.TestDataFaker"/>
         <class name ="auto.play01.datadriven01.CRUDJsonTest"/>
-        <class name ="auto.play01.datadriven01.TestExample"/>
-    </classes>
-</test>
+      </classes>
+    </test>
+
+    <test name="Ui Data-Driven Test" verbose="2" preserve-order="true" >
+        <groups>
+            <run>
+                <include name="ui"/>
+                <include name="smoke"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name ="auto.play01.datadriven01.TestExample1"/>
+            <class name ="auto.play01.datadriven01.TestExample2"/>
+        </classes>
+    </test>
+
+
+
 </suite>
