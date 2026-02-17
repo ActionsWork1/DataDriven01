@@ -57,6 +57,14 @@ jobs:
           ref: gh-pages
           path: gh-pages
 
+      # 2. KEY STEP: Copy history from the previous deployment to the current results
+      - name: Allure Report Action setup
+        if: always()
+        run: |
+          mkdir -p allure-results/history
+          # Copy the history folder from the last deployment into the new results
+          cp -r gh-pages-dir/history/* allure-results/history/ || echo "No previous history found"          
+
       # 2. Build the new report.
       # It takes results from your bin folder AND history from the 'gh-pages' folder,
       # then puts the combined result into 'allure-history'
